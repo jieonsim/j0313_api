@@ -1,7 +1,7 @@
 package api2_String;
 
 // 글자 찾기
-public class T3_indexOf {
+public class T2_SubString {
 	public static void main(String[] args) {
 //					   0		 1		  2
 //					   01234567890123457890
