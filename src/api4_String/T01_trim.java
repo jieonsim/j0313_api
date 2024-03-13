@@ -1,7 +1,7 @@
-package api2_String;
+package api4_String;
 
 // 바깥쪽 공백 무시
-public class T1_trim {
+public class T01_trim {
 	public static void main(String[] args) {
 		String str1 = " 안    녕 ";
 		String res;
