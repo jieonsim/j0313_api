@@ -17,7 +17,7 @@ import java.util.*;
    -----------------------------------
    아이디를 입력하세요? abcdefghijklmnopqrstuvwzyz
    ==> 입력된 아이디 abcdefghijklmnopqrstuvwzyz는 사용하실수 없습니다.
-   20초가 사용이 제한됩니다.
+   20초간 사용이 제한됩니다.
    ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~(20초간 기다림.....)
    
    아이디를 입력하세요? atom1234!
@@ -32,13 +32,46 @@ import java.util.*;
 public class Example2 {
 	public static void main(String[] args) {
 		Scanner scanner = new Scanner(System.in);
-		
-		System.out.print("아이디를 입력하세요 : ");
-		String id = scanner.next();
-		if (id.equals("_")) {
-			System.out.println("입력된 아이디 " + id + "는 사용하실 수 없습니다.");
+		boolean login = false;
+
+		while (!login) {
+			int chance = 0;
+
+			while (chance < 3) {
+
+				System.out.print("아이디를 입력하세요 : ");
+				String id = scanner.nextLine();
+
+				if (id.equals("jieon")) {
+					System.out.println("로그인 되었습니다.");
+					login = true;
+					break;
+				} else {
+					System.out.println("==> 입력된 아이디 " + id + "는 사용하실 수 없습니다.");
+					chance++;
+					if (chance < 3) {
+						System.out.print("계속할까요 ? (Y/N) ");
+						String answer = scanner.nextLine().toUpperCase();
+						if (answer.equals("N")) {
+							System.out.println("종료합니다.");
+							scanner.close();
+							return;
+						}
+						System.out.println("--------------------");
+					}
+				}
+			}
+
+			if (!login && chance == 3) {
+				System.out.println("==> 3번의 시도가 모두 실패하여 20초간 사용이 제한됩니다.");
+				try {
+					Thread.sleep(20000);
+					System.out.println("다시 시도해주세요.\n");
+				} catch (InterruptedException e) {
+					e.printStackTrace();
+				}
+			}
 		}
-		System.out.println();
 		scanner.close();
 	}
 }
